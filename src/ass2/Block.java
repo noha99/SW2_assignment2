@@ -16,7 +16,8 @@ public class Block {
 		public Block(String data,String previousHash ) {
 			this.data = data;
 			this.previousHash = previousHash;
-			this.timeStamp = new Date().getTime();
+			this.timeStamp = new Date().getTime(); 
+			this.hash = calculateHash(); //Making sure we do this after we set the other values.
 			
                 }	 
         public void mineBlock(int difficulty) {
@@ -37,6 +38,7 @@ public class Block {
 				byte[] hash = digest.digest(input.getBytes("UTF-8"));
 		        
 				StringBuffer hexString = new StringBuffer(); // This will contain hash as hexidecimal
+
                 for (int i = 0; i < hash.length; i++) {
 					String hex = Integer.toHexString(0xff & hash[i]);
 					if(hex.length() == 1) hexString.append('0');
@@ -57,6 +59,5 @@ public class Block {
 					data 
 					);
 			return calculatedhash;
-		}
-                 
+		}     
 } 
