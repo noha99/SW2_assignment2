@@ -39,5 +39,15 @@ for (int i = 0; i < hash.length; i++) {
 				throw new RuntimeException(e);
 			}
 		}
+//Calculate new hash based on blocks contents
+		public String calculateHash() {
+			String calculatedhash = applySha256( 
+					previousHash +
+					Long.toString(timeStamp) +
+					Integer.toString(nonce) + 
+					data 
+					);
+			return calculatedhash;
+		}
                  
 } 
